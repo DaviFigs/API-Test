@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/davi/DEV/GIT/API-Test/venv"
+set -gx VIRTUAL_ENV "/home/davi/DEV/GIT/API-Test/API-Test/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
