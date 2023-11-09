@@ -26,14 +26,14 @@ class Employe(Base):
     manager = relationship("Manager", back_populates="employe")
     operator = relationship("Operator", back_populates="employe")
 
-class Supervisor(Employe):
+class Supervisor(Base):
     __tablename__ = 'supervisor'
     id = Column(Integer, primary_key= True)
     id_employe = Column(Integer, ForeignKey('employe.id'))
     sector = Column(String(30), nullable=False)
     employe = relationship("Employe", back_populates="supervisor")
 
-class Manager(Employe):
+class Manager(Base):
     __tablename__ = 'manager'
     id = Column(Integer, primary_key=True)
     id_employe = Column(Integer, ForeignKey('employe.id'))
@@ -41,7 +41,7 @@ class Manager(Employe):
     employe = relationship("Employe", back_populates="manager")
 
 
-class Operator(Employe):
+class Operator(Base):
     __tablename__ = 'operator'
     id = Column(Integer, primary_key=True)
     id_employe = Column(Integer, ForeignKey('employe.id'))

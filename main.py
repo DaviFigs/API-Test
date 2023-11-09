@@ -19,23 +19,29 @@ def home():
     return {'msg':'Welcome to my API '}
 
 @app.post('/register')
-def register_new_employe(option:int,name:str, cpf:str,salary:float, function:str):
+def register_new_employe(option:int,name:str, cpf:str,salary:float, work:str):
     try:
+        employe = Employe(name = name, cpf = cpf, salary = salary)
         session = return_session()
         if option == 1:#register supervisor
-            employe = Employe(name = name, cpf = cpf, salary = salary)
-            employe.supervisor = [Supervisor(sector = function)]
-            session.add(employe)
-            session.commit()
+            employe.supervisor = [Supervisor(sector = work)]
         elif option == 2:
-            pass
+            employe.manager = [Manager(unit = work)]
         elif option == 3:
-            pass
-        
-
+            employe.operator = [Operator(function = work)]
+        session.add(employe)
+        session.commit()
+    
         return {'success':'User was created!'}
     except:
         return {'error':'erro'}
+    
+@app.get('get_all_employe')
+def all_employe():
+    try:
+        session = return_session()
+    except:
+        pass
 
 
 
