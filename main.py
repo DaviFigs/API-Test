@@ -36,12 +36,15 @@ def register_new_employe(option:int,name:str, cpf:str,salary:float, work:str):
     except:
         return {'error':'erro'}
     
-@app.get('get_all_employe')
+@app.get('/get_all_employe')
 def all_employe():
     try:
         session = return_session()
+        employes = session.query(Employe).all()
+        return {'employes': employes}
     except:
         pass
+        
 
 
 
