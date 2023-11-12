@@ -1,5 +1,7 @@
 from functions.conn_def import return_session
 from functions.query_defs.manager_query import ManageQuery
+from functions.query_defs.operator_query import OperatorQuery
+from functions.query_defs.supervisor_query import SupervisorQuery
 from models.models import Employe
 
 session = return_session()
@@ -16,13 +18,18 @@ class EmployeQuery:
             manager = ManageQuery()
             new_manager = manager.insert_manager(emp_id,action)
             session.add(new_manager)
-            session.commit()
-            session.close()
-            return {'Message':f'A new manager was created at employe id:{emp_id}'}
+            
         elif option ==  2:
-            pass
+            operator = OperatorQuery()
+            new_operator = operator.insert_operator(emp_id,action)
+            session.add(new_operator)
         elif option ==3:
-            pass
+            supervisor = SupervisorQuery()
+            new_supervisor = supervisor.insert_supervisor(emp_id, action)
+            session.add(new_supervisor)
+        session.commit()
+        session.close()
+        return {'Message':f'A new employe and his function was created'}
 
     def select_all(self):
         data = session.query(Employe).all()
