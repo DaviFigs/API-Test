@@ -1,12 +1,22 @@
-def order_managers(managers):
-    list_managers=[]
-    dict_managers={}
-    for i in range(len(managers)):
-        dict_managers ={
-            'name':managers[i][0],
-            'cpf':managers[i][1],
-            'salary':managers[i][2],
-            'unit':managers[i][3]
+
+
+def filter_search(query_list, position):
+    if position == 1:
+        job = 'unit'
+    elif position == 2:
+        job = 'function'
+    elif position == 3:
+        job = 'sector'
+    employes_list=[]
+    dictionary_employes={}
+    for i in range(len(query_list)):
+        dictionary_employes ={
+            'name':query_list[i][0],
+            'cpf':query_list[i][1],
+            'salary':query_list[i][2],
+            f'{job}':query_list[i][3]
         }
-        list_managers.append(dict_managers)
-    return list_managers
+        employes_list.append(dictionary_employes)
+
+    return employes_list
+

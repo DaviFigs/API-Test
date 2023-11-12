@@ -1,6 +1,6 @@
 from functions.conn_def import return_session
 from models.models import Manager ,Employe
-from functions.aux_defs import order_managers
+from functions.aux_defs import filter_search
 
 class ManageQuery:
     def __init__(self) -> None:
@@ -10,7 +10,7 @@ class ManageQuery:
         manager = Manager(id_employe = employe_id, unit = unit)
         return manager
     
-    def select_managers(self):
+    def select_managers(self,position):
         managers = self.session.query(Manager)\
             .join(Employe, Employe.id == Manager.id_employe)\
             .with_entities(
@@ -19,8 +19,7 @@ class ManageQuery:
                 Employe.salary,
                 Manager.unit
             ).all()
-        list_managers = order_managers(managers)
-              
+        list_managers = filter_search(managers, position)   
         
         self.session.close()
         return list_managers

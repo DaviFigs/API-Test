@@ -3,11 +3,10 @@ from sqlalchemy.orm import sessionmaker
 #Queries
 from functions.query_defs.employ_query import EmployeQuery
 from functions.query_defs.manager_query import ManageQuery
+from functions.query_defs.operator_query import OperatorQuery
+from functions.query_defs.supervisor_query import SupervisorQuery
 app = FastAPI()
 
-@app.get('/home')
-def home():
-    return {'msg':'Welcome to my API '}
 
 @app.post('/register')
 def register_new_employe(option:int,name:str, cpf:str,salary:float, action:str):
@@ -29,15 +28,24 @@ def all_employe():
     except:
         return {'error':'Something happens'}
     
-@app.get('/get_all_managers')
-def all_managers():
+@app.post('/select_employs_by_opsition')
+def employes_by_work(position:int):
     try:
-        managers = ManageQuery()
-        data = managers.select_managers()
-            
+        print("1-Manager")
+        if position == 1:
+            manager = ManageQuery()
+            data = manager.select_managers(position)
+        elif position == 2:
+            operator = OperatorQuery()
+            data = operator.select_operators(position)
+        elif position == 3:
+            supervisor = SupervisorQuery()
+            data = supervisor.select_supervisors(position)
+
+        print(data)
         return {'managers':data}
     except:
         return {'error':'Something Happens'}
-
+    
 
 

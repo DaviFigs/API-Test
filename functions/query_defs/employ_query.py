@@ -34,14 +34,3 @@ class EmployeQuery:
         data = self.session.query(Employe).all()
         self.session.close()
         return data
-        
-
-    def select_managers(self):
-        managers = self.session.query(Employe)\
-            .with_entities(
-                Employe.name,
-                Employe.cpf,
-                Employe.salary,
-                Employe.manager   
-            ).all()
-        return managers
