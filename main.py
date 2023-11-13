@@ -46,6 +46,9 @@ def employes_by_work(position:int):
         return {'managers':data}
     except:
         return {'error':'Something Happens'}
+@app.post('/comission')
+def add_comission(position:int, num_sold):
+    pass
     
 
 
