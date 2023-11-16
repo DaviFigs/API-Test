@@ -28,7 +28,7 @@ def all_employe():
     except:
         return {'error':'Something happens'}
     
-@app.post('/select_employs_by_opsition')
+@app.post('/select_employs_by_position')
 def employes_by_work(position:int):
     try:
         print("1-Manager")
@@ -46,9 +46,9 @@ def employes_by_work(position:int):
         return {'managers':data}
     except:
         return {'error':'Something Happens'}
+    
 @app.post('/comission')
 def add_comission(position:int, num_sold):
     pass
-    
 
 
